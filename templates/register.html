@@ -6,14 +6,14 @@
     {% with messages = get_flashed_messages(with_categories=true) %}
       {% if messages %}
         {% for category, message in messages %}
-          <div class="mb-4 p-2 rounded text-center {% if category == 'danger' %}bg-red-200 text-red-700{% elif category == 'success' %}bg-green-200 text-green-700{% else %}bg-gray-200 text-gray-700{% endif %}">{{ message }}</div>
+          <div class="mb-4 p-2 rounded text-center {% if category == 'danger' %}bg-red-200 text-red-700{% elif category == 'success' %}bg-green-200 text-green-700{% elif category == 'warning' %}bg-yellow-200 text-yellow-700{% else %}bg-gray-200 text-gray-700{% endif %}">{{ message }}</div>
         {% endfor %}
       {% endif %}
     {% endwith %}
-    <form method="POST" id="registerForm">
+    <form method="POST" id="registerForm" onsubmit="return validateForm()">
         <div class="mb-4">
-            <label class="block text-gray-700 mb-2" for="name">Name</label>
-            <input class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-300" type="text" name="name" id="name" placeholder="Your name" required>
+            <label class="block text-gray-700 mb-2" for="username">Username</label>
+            <input class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-300" type="text" name="username" id="username" placeholder="Choose a username" required>
         </div>
         <div class="mb-4">
             <label class="block text-gray-700 mb-2" for="email">Email</label>
@@ -21,14 +21,8 @@
         </div>
         <div class="mb-4">
             <label class="block text-gray-700 mb-2" for="password">Password</label>
-            <input class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-300" type="password" name="password" id="password" placeholder="Create a password" required oninput="checkPassword()">
-            <ul class="mt-2 text-sm" id="password-reqs">
-                <li id="req-length" class="text-red-500">• At least 8 characters</li>
-                <li id="req-uppercase" class="text-red-500">• At least one uppercase letter</li>
-                <li id="req-lowercase" class="text-red-500">• At least one lowercase letter</li>
-                <li id="req-digit" class="text-red-500">• At least one number</li>
-                <li id="req-special" class="text-red-500">• At least one special character</li>
-            </ul>
+            <input class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-300" type="password" name="password" id="password" placeholder="Create a password (min 8 characters)" required oninput="checkPassword()">
+            <p class="mt-2 text-sm text-gray-600">Password must be at least 8 characters long</p>
         </div>
         <div class="mb-4">
             <label class="block text-gray-700 mb-2" for="skin_type">Skin Type (Fitzpatrick Scale)</label>
@@ -42,31 +36,66 @@
                 <option value="VI">VI - Dark brown/black</option>
             </select>
         </div>
-        <button type="submit" class="w-full bg-orange-400 hover:bg-orange-500 text-white font-semibold py-2 px-4 rounded-lg transition duration-200">Sign Up</button>
+        <button type="submit" id="submitButton" class="w-full bg-orange-400 hover:bg-orange-500 text-white font-semibold py-2 px-4 rounded-lg transition duration-200">Sign Up</button>
     </form>
-    <p class="mt-6 text-center text-gray-600">Already have an account? <a href="{{ url_for('login') }}" class="text-orange-500 hover:underline">Sign in</a></p>
+    <div class="mt-6 text-center space-y-2">
+        <a href="{{ url_for('login') }}" class="inline-block bg-orange-100 hover:bg-orange-200 text-orange-600 font-semibold py-2 px-4 rounded-lg transition duration-200">Sign In</a>
+        <p class="text-sm text-gray-600 mt-2">
+            Already have an account? <a href="{{ url_for('login') }}" class="text-orange-500 hover:underline">Login here</a>
+        </p>
+    </div>
 </div>
+
 <script>
 function checkPassword() {
     const password = document.getElementById('password').value;
-    const reqs = [
-        { id: 'req-length', regex: /.{8,}/ },
-        { id: 'req-uppercase', regex: /[A-Z]/ },
-        { id: 'req-lowercase', regex: /[a-z]/ },
-        { id: 'req-digit', regex: /\d/ },
-        { id: 'req-special', regex: /[^A-Za-z0-9]/ }
-    ];
-    reqs.forEach(r => {
-        const el = document.getElementById(r.id);
-        if (r.regex.test(password)) {
-            el.classList.remove('text-red-500');
-            el.classList.add('text-green-600');
-        } else {
-            el.classList.add('text-red-500');
-            el.classList.remove('text-green-600');
-        }
-    });
+    const submitButton = document.getElementById('submitButton');
+    
+    // Simple validation - just check length
+    if (password.length >= 8) {
+        submitButton.disabled = false;
+    } else {
+        submitButton.disabled = true;
+    }
 }
+
+function validateForm() {
+    const username = document.getElementById('username').value;
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    const skinType = document.getElementById('skin_type').value;
+    const submitButton = document.getElementById('submitButton');
+    
+    // Basic validation
+    if (!username || !email || !password || !skinType) {
+        return false;
+    }
+    
+    // Check password length
+    if (password.length < 8) {
+        return false;
+    }
+    
+    // Disable button to prevent double submission
+    submitButton.disabled = true;
+    submitButton.textContent = 'Creating Account...';
+    
+    return true;
+}
+
+// Re-enable button if form submission fails
+document.getElementById('registerForm').addEventListener('submit', function(e) {
+    if (!validateForm()) {
+        e.preventDefault();
+        document.getElementById('submitButton').disabled = false;
+        document.getElementById('submitButton').textContent = 'Sign Up';
+    }
+});
+
+// Initial validation
+document.addEventListener('DOMContentLoaded', function() {
+    checkPassword();
+});
 </script>
 {% endblock %} 
 
@@ -79,4 +108,4 @@ function checkPassword() {
   
  
       
-              
+                                                          

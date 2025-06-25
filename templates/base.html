@@ -8,7 +8,18 @@
 </head>
 <body class="bg-gradient-to-br from-yellow-100 via-orange-200 to-pink-200 min-h-screen">
     <div class="container mx-auto py-8">
+        <nav class="mb-8 flex justify-between items-center">
+            <a href="/" class="text-xl font-bold text-orange-500">TanTime</a>
+            <div>
+                <a href="/login" class="text-orange-500 hover:underline mr-4">Login</a>
+                <a href="/register" class="text-orange-500 hover:underline">Sign Up</a>
+            </div>
+        </nav>
         {% block content %}{% endblock %}
-    </div>
+    </div>       
 </body>
 </html> 
+
+
+
+
