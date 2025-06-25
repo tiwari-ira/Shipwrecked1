@@ -1,0 +1,8 @@
+Flask==2.3.3
+Flask-SQLAlchemy==3.0.5
+Flask-Login==0.6.3
+Flask-Mail==0.9.1
+Werkzeug==2.3.7
+itsdangerous==2.1.2
+cryptography==41.0.7
+reportlab==4.0.4 

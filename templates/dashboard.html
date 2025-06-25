@@ -1,74 +1,123 @@
 {% extends 'base.html' %}
-{% block title %}Dashboard | TanTime{% endblock %}
+{% block title %}Dashboard - TanTime{% endblock %}
 {% block content %}
-<div class="max-w-4xl mx-auto bg-white bg-opacity-80 rounded-xl shadow-lg p-8 mt-12">
-    <div class="flex justify-between items-center mb-8">
-        <h1 class="text-3xl font-bold text-orange-500">Welcome, {{ user.username }}!</h1>
-        <div class="flex space-x-4">
-            <a href="{{ url_for('profile') }}" class="bg-orange-100 hover:bg-orange-200 text-orange-600 font-semibold py-2 px-4 rounded-lg transition duration-200">Profile</a>
-            <a href="{{ url_for('logout') }}" class="bg-red-100 hover:bg-red-200 text-red-600 font-semibold py-2 px-4 rounded-lg transition duration-200">Logout</a>
-        </div>  
+<div class="max-w-6xl mx-auto">
+    <!-- Welcome Section -->
+    <div class="glass rounded-3xl p-12 summer-shadow mb-12 text-center">
+        <div class="w-24 h-24 sun-gradient rounded-full flex items-center justify-center mx-auto mb-6 pulse-glow">
+            <span class="text-white text-4xl">☀️</span>
+        </div>
+        <h1 class="text-4xl font-bold mb-4 bg-gradient-to-r from-orange-600 to-yellow-600 bg-clip-text text-transparent">
+            Welcome to TanTime!
+        </h1>
+        <p class="text-xl text-gray-600 mb-6">Your personal tanning session tracker and goal manager</p>
+        <p class="text-lg text-gray-700">Start tracking your tanning progress and achieve your perfect summer glow safely!</p>
     </div>
-         
-    {% with messages = get_flashed_messages(with_categories=true) %}
-      {% if messages %}
-        {% for category, message in messages %}
-          <div class="mb-4 p-2 rounded text-center {% if category == 'danger' %}bg-red-200 text-red-700{% elif category == 'success' %}bg-green-200 text-green-700{% elif category == 'warning' %}bg-yellow-200 text-yellow-700{% else %}bg-gray-200 text-gray-700{% endif %}">{{ message }}</div>
-        {% endfor %}
-      {% endif %}
-    {% endwith %}
-    
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <!-- User Info Card -->
-        <div class="bg-orange-50 p-6 rounded-lg">
-            <h3 class="text-lg font-semibold text-orange-700 mb-4">Your Information</h3>
-            <div class="space-y-2">
-                <p><span class="font-medium">Username:</span> {{ user.username }}</p>
-                <p><span class="font-medium">Email:</span> {{ user.email }}</p>
-                <p><span class="font-medium">Skin Type:</span> {{ user.skin_type }}</p>
-                <p><span class="font-medium">Email Verified:</span> 
-                    {% if user.email_verified %}
-                        <span class="text-green-600">✓ Yes</span>
-                    {% else %}
-                        <span class="text-red-600">✗ No</span>
-                    {% endif %}
-                </p>
+
+    <!-- Quick Stats -->
+    <div class="grid md:grid-cols-4 gap-6 mb-12">
+        <div class="glass rounded-2xl p-6 text-center summer-shadow">
+            <div class="w-12 h-12 sun-gradient rounded-full flex items-center justify-center mx-auto mb-3">
+                <span class="text-white text-lg">📊</span>
             </div>
+            <h3 class="text-2xl font-bold text-orange-700">0</h3>
+            <p class="text-gray-600">Total Sessions</p>
         </div>
         
-        <!-- Quick Actions Card -->
-        <div class="bg-orange-50 p-6 rounded-lg">
-            <h3 class="text-lg font-semibold text-orange-700 mb-4">Quick Actions</h3>
-            <div class="space-y-3">
-                <a href="#" class="block bg-orange-400 hover:bg-orange-500 text-white font-semibold py-2 px-4 rounded-lg transition duration-200 text-center">Log Tanning Session</a>
-                <a href="#" class="block bg-orange-400 hover:bg-orange-500 text-white font-semibold py-2 px-4 rounded-lg transition duration-200 text-center">Add Sunscreen</a>
-                <a href="#" class="block bg-orange-400 hover:bg-orange-500 text-white font-semibold py-2 px-4 rounded-lg transition duration-200 text-center">View History</a>
+        <div class="glass rounded-2xl p-6 text-center summer-shadow">
+            <div class="w-12 h-12 sun-gradient rounded-full flex items-center justify-center mx-auto mb-3">
+                <span class="text-white text-lg">⏱️</span>
             </div>
+            <h3 class="text-2xl font-bold text-orange-700">0</h3>
+            <p class="text-gray-600">Hours Tanned</p>
         </div>
         
-        <!-- Stats Card -->
-        <div class="bg-orange-50 p-6 rounded-lg">
-            <h3 class="text-lg font-semibold text-orange-700 mb-4">Your Stats</h3>
-            <div class="space-y-2">
-                <p><span class="font-medium">Total Sessions:</span> 0</p>
-                <p><span class="font-medium">This Month:</span> 0</p>
-                <p><span class="font-medium">Last Session:</span> Never</p>
-                <p><span class="font-medium">Member Since:</span> {{ user.id }}</p>
+        <div class="glass rounded-2xl p-6 text-center summer-shadow">
+            <div class="w-12 h-12 sun-gradient rounded-full flex items-center justify-center mx-auto mb-3">
+                <span class="text-white text-lg">🎯</span>
             </div>
+            <h3 class="text-2xl font-bold text-orange-700">0</h3>
+            <p class="text-gray-600">Goals Set</p>
+        </div>
+        
+        <div class="glass rounded-2xl p-6 text-center summer-shadow">
+            <div class="w-12 h-12 sun-gradient rounded-full flex items-center justify-center mx-auto mb-3">
+                <span class="text-white text-lg">🌟</span>
+            </div>
+            <h3 class="text-2xl font-bold text-orange-700">0</h3>
+            <p class="text-gray-600">Goals Achieved</p>
         </div>
     </div>
-    
-    <!-- Coming Soon Section -->
-    <div class="mt-8 p-6 bg-gray-50 rounded-lg">
-        <h3 class="text-xl font-semibold text-gray-700 mb-4">Coming Soon</h3>
-        <p class="text-gray-600 mb-4">We're working hard to bring you these exciting features:</p>
-        <ul class="list-disc list-inside space-y-2 text-gray-600">
-            <li>Tanning session tracking with UV index monitoring</li>
-            <li>Sunscreen application reminders</li>
-            <li>Skin health recommendations based on your skin type</li>
-            <li>Progress tracking and analytics</li>
-            <li>Weather integration for safe tanning times</li>
-        </ul>
+
+    <!-- Features Grid -->
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div class="glass rounded-2xl p-8 text-center summer-shadow hover:transform hover:scale-105 transition-all duration-300">
+            <div class="w-16 h-16 sun-gradient rounded-full flex items-center justify-center mx-auto mb-6">
+                <span class="text-white text-2xl">📊</span>
+            </div>
+            <h3 class="text-xl font-semibold text-orange-700 mb-4">Track Sessions</h3>
+            <p class="text-gray-600 mb-6 leading-relaxed">
+                Log your tanning sessions with duration, UV level, and notes. Keep a detailed history of your tanning progress.
+            </p>
+            <a href="#" class="inline-block sun-gradient text-white font-semibold py-3 px-6 rounded-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300">
+                Add Session
+            </a>
+        </div>
+        
+        <div class="glass rounded-2xl p-8 text-center summer-shadow hover:transform hover:scale-105 transition-all duration-300">
+            <div class="w-16 h-16 sun-gradient rounded-full flex items-center justify-center mx-auto mb-6">
+                <span class="text-white text-2xl">🎯</span>
+            </div>
+            <h3 class="text-xl font-semibold text-orange-700 mb-4">Set Goals</h3>
+            <p class="text-gray-600 mb-6 leading-relaxed">
+                Set personalized tanning goals and track your progress. Achieve your desired tan safely and effectively.
+            </p>
+            <a href="#" class="inline-block sun-gradient text-white font-semibold py-3 px-6 rounded-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300">
+                Set Goals
+            </a>
+        </div>
+        
+        <div class="glass rounded-2xl p-8 text-center summer-shadow hover:transform hover:scale-105 transition-all duration-300">
+            <div class="w-16 h-16 sun-gradient rounded-full flex items-center justify-center mx-auto mb-6">
+                <span class="text-white text-2xl">📈</span>
+            </div>
+            <h3 class="text-xl font-semibold text-orange-700 mb-4">View Progress</h3>
+            <p class="text-gray-600 mb-6 leading-relaxed">
+                Visualize your tanning journey with charts and statistics. See your progress over time and stay motivated.
+            </p>
+            <a href="#" class="inline-block sun-gradient text-white font-semibold py-3 px-6 rounded-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300">
+                View Progress
+            </a>
+        </div>
+        
+        <div class="glass rounded-2xl p-8 text-center summer-shadow hover:transform hover:scale-105 transition-all duration-300">
+            <div class="w-16 h-16 sun-gradient rounded-full flex items-center justify-center mx-auto mb-6">
+                <span class="text-white text-2xl">⚙️</span>
+            </div>
+            <h3 class="text-xl font-semibold text-orange-700 mb-4">Manage Profile</h3>
+            <p class="text-gray-600 mb-6 leading-relaxed">
+                Update your profile settings, skin type, and preferences. Customize your TanTime experience.
+            </p>
+            <a href="/profile" class="inline-block sun-gradient text-white font-semibold py-3 px-6 rounded-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300">
+                Profile
+            </a>
+        </div>
+    </div>
+
+    <!-- Recent Activity -->
+    <div class="mt-12 glass rounded-3xl p-8 summer-shadow">
+        <h2 class="text-2xl font-bold mb-6 text-center bg-gradient-to-r from-orange-600 to-yellow-600 bg-clip-text text-transparent">
+            Recent Activity
+        </h2>
+        <div class="text-center text-gray-600">
+            <div class="w-16 h-16 sun-gradient rounded-full flex items-center justify-center mx-auto mb-4">
+                <span class="text-white text-2xl">📝</span>
+            </div>
+            <p class="text-lg">No recent activity yet. Start by adding your first tanning session!</p>
+            <a href="#" class="inline-block mt-4 sun-gradient text-white font-semibold py-3 px-6 rounded-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300">
+                Add First Session
+            </a>
+        </div>
     </div>
 </div>
 {% endblock %} 

@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% block title %}Welcome to TanTime!{% endblock %}
+{% block content %}
+<div class="max-w-2xl mx-auto">
+    <div class="glass rounded-3xl p-12 summer-shadow text-center">
+        <div class="w-24 h-24 sun-gradient rounded-full flex items-center justify-center mx-auto mb-6 pulse-glow">
+            <span class="text-white text-4xl">✓</span>
+        </div>
+        
+        <div class="w-20 h-20 sun-gradient rounded-full flex items-center justify-center mx-auto mb-6">
+            <span class="text-white text-2xl">☀️</span>
+        </div>
+        
+        <h1 class="text-4xl font-bold mb-6 bg-gradient-to-r from-orange-600 to-yellow-600 bg-clip-text text-transparent">
+            Welcome to TanTime!
+        </h1>
+        
+        <div class="space-y-4 text-lg text-gray-700 leading-relaxed">
+            <p>
+                Your account has been created successfully! We've sent a verification email to your inbox. 
+                Please check your email and click the verification link to activate your account.
+            </p>
+            <p>
+                Once verified, you'll be able to start tracking your tanning sessions and achieving your perfect summer glow!
+            </p>
+        </div>
+        
+        <div class="mt-8 space-y-4">
+            <div class="flex items-center justify-center space-x-3 text-gray-600">
+                <div class="w-6 h-6 sun-gradient rounded-full flex items-center justify-center">
+                    <span class="text-white text-xs">📧</span>
+                </div>
+                <span>Check your email inbox</span>
+            </div>
+            <div class="flex items-center justify-center space-x-3 text-gray-600">
+                <div class="w-6 h-6 sun-gradient rounded-full flex items-center justify-center">
+                    <span class="text-white text-xs">🔗</span>
+                </div>
+                <span>Click the verification link</span>
+            </div>
+            <div class="flex items-center justify-center space-x-3 text-gray-600">
+                <div class="w-6 h-6 sun-gradient rounded-full flex items-center justify-center">
+                    <span class="text-white text-xs">☀️</span>
+                </div>
+                <span>Start your tanning journey!</span>
+            </div>
+        </div>
+        
+        <div class="mt-12 flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="/login" class="sun-gradient text-white font-semibold py-3 px-8 rounded-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300">
+                ☀️ Go to Login
+            </a>
+            <a href="/" class="glass-dark text-orange-700 font-semibold py-3 px-8 rounded-lg hover:bg-orange-500 hover:text-white transition-all duration-300 summer-shadow">
+                🏠 Back to Home
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %} 

@@ -1,7 +1,103 @@
 {% extends 'base.html' %}
-{% block title %}Home | TanTime{% endblock %}
+{% block title %}TanTime - Your Perfect Tan Awaits{% endblock %}
 {% block content %}
-<div class="text-center mt-24">
-    <h1 class="text-4xl font-bold text-orange-500 mb-4">Home page for now</h1>
+<div class="max-w-6xl mx-auto">
+    <!-- Hero Section -->
+    <div class="text-center mb-16">
+        <div class="glass rounded-3xl p-12 summer-shadow mb-8">
+            <div class="w-24 h-24 sun-gradient rounded-full flex items-center justify-center mx-auto mb-6 pulse-glow">
+                <span class="text-white text-4xl">☀️</span>
+            </div>
+            <h1 class="text-5xl font-bold mb-6 bg-gradient-to-r from-orange-600 to-yellow-600 bg-clip-text text-transparent">
+                Welcome to TanTime
+            </h1>
+            <p class="text-xl text-gray-700 mb-8 max-w-2xl mx-auto leading-relaxed">
+                Track your tanning sessions, set goals, and achieve your perfect summer glow safely with our comprehensive tanning management app.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="/login" class="glass-dark px-8 py-4 rounded-full text-orange-700 font-semibold hover:bg-orange-500 hover:text-white transition-all duration-300 summer-shadow text-lg">
+                    ☀️ Get Started
+                </a>
+                <a href="/signup" class="sun-gradient px-8 py-4 rounded-full text-white font-semibold hover:shadow-xl transform hover:scale-105 transition-all duration-300 text-lg">
+                    ✨ Join Now
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Features Section -->
+    <div class="grid md:grid-cols-3 gap-8 mb-16">
+        <div class="glass rounded-2xl p-8 text-center summer-shadow hover:transform hover:scale-105 transition-all duration-300">
+            <div class="w-16 h-16 sun-gradient rounded-full flex items-center justify-center mx-auto mb-4">
+                <span class="text-white text-2xl">📊</span>
+            </div>
+            <h3 class="text-xl font-semibold text-orange-700 mb-3">Track Sessions</h3>
+            <p class="text-gray-600">Log duration, UV levels, and detailed notes for each tanning session with precision.</p>
+        </div>
+        
+        <div class="glass rounded-2xl p-8 text-center summer-shadow hover:transform hover:scale-105 transition-all duration-300">
+            <div class="w-16 h-16 sun-gradient rounded-full flex items-center justify-center mx-auto mb-4">
+                <span class="text-white text-2xl">🎯</span>
+            </div>
+            <h3 class="text-xl font-semibold text-orange-700 mb-3">Set Goals</h3>
+            <p class="text-gray-600">Create personalized tanning goals and milestones to achieve your perfect summer glow.</p>
+        </div>
+        
+        <div class="glass rounded-2xl p-8 text-center summer-shadow hover:transform hover:scale-105 transition-all duration-300">
+            <div class="w-16 h-16 sun-gradient rounded-full flex items-center justify-center mx-auto mb-4">
+                <span class="text-white text-2xl">📈</span>
+            </div>
+            <h3 class="text-xl font-semibold text-orange-700 mb-3">View Progress</h3>
+            <p class="text-gray-600">Visualize your tanning journey with beautiful charts and detailed analytics.</p>
+        </div>
+    </div>
+
+    <!-- Benefits Section -->
+    <div class="glass rounded-3xl p-12 summer-shadow">
+        <h2 class="text-3xl font-bold text-center mb-8 bg-gradient-to-r from-orange-600 to-yellow-600 bg-clip-text text-transparent">
+            Why Choose TanTime?
+        </h2>
+        <div class="grid md:grid-cols-2 gap-8">
+            <div class="flex items-start space-x-4">
+                <div class="w-12 h-12 sun-gradient rounded-full flex items-center justify-center flex-shrink-0">
+                    <span class="text-white text-lg">🛡️</span>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold text-orange-700 mb-2">Safe Tanning</h3>
+                    <p class="text-gray-600">Track UV exposure and get reminders to ensure safe tanning practices.</p>
+                </div>
+            </div>
+            
+            <div class="flex items-start space-x-4">
+                <div class="w-12 h-12 sun-gradient rounded-full flex items-center justify-center flex-shrink-0">
+                    <span class="text-white text-lg">📱</span>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold text-orange-700 mb-2">Easy to Use</h3>
+                    <p class="text-gray-600">Beautiful, intuitive interface designed for the best user experience.</p>
+                </div>
+            </div>
+            
+            <div class="flex items-start space-x-4">
+                <div class="w-12 h-12 sun-gradient rounded-full flex items-center justify-center flex-shrink-0">
+                    <span class="text-white text-lg">🔒</span>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold text-orange-700 mb-2">Secure & Private</h3>
+                    <p class="text-gray-600">Your data is encrypted and secure. Your privacy is our priority.</p>
+                </div>
+            </div>
+            
+            <div class="flex items-start space-x-4">
+                <div class="w-12 h-12 sun-gradient rounded-full flex items-center justify-center flex-shrink-0">
+                    <span class="text-white text-lg">🌟</span>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold text-orange-700 mb-2">Perfect Results</h3>
+                    <p class="text-gray-600">Achieve your ideal tan with data-driven insights and recommendations.</p>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 {% endblock %} 
